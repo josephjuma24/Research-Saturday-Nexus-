@@ -119,6 +119,14 @@
     accent-color: #0B195E;
   }
 
+  /* Balanced headings (no single-word last lines) and tidier paragraph rag app-wide */
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+
   ::selection {
     background: #F7DBE0;
     color: #0B195E;

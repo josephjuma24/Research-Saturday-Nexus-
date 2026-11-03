@@ -190,18 +190,18 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
       <div className="bg-brand-navy text-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-800 relative overflow-hidden">
         <svg className="absolute right-0 top-0 h-full w-1/3 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M70 0 C 45 35, 55 70, 100 100 L 100 0 Z" fill="#8A0F23" opacity="0.9" /><path d="M78 0 C 55 35, 63 70, 108 100 L 108 0 Z" fill="#0B195E" /></svg>
         
-        <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
+        <div className="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-6">
+          <div className="space-y-2 min-w-0 lg:flex-1 max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>Weekly Autonomous Open Data & MCP Harvester</span>
             </div>
             
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white text-balance">
               Open Source Dataset Harvester & MCP Gateway
             </h1>
             
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-slate-300 text-sm leading-relaxed max-w-3xl text-pretty">
               An ethical, autonomous agent that crawls open-access research repositories, CKAN data portals, and Model Context Protocol (MCP) data servers weekly. It rigorously validates open source licensing (CC-BY, CC0, ODbL), strips PII, and avails verified microdata on the platform under Datasets so that available dataset sources increase continuously.
             </p>
 

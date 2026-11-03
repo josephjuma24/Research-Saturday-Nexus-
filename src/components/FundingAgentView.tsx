@@ -148,11 +148,11 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight text-balance">
               Open Funding Calls Scout & Origin Verifier
             </h1>
 
-            <p className="text-sm text-slate-600 max-w-3xl leading-relaxed">
+            <p className="text-sm text-slate-600 max-w-3xl leading-relaxed text-pretty">
               Autonomous agent running once daily to scout, crawl, and scrape open grant opportunities, RFPs, and donor calls across the internet. Every ingested opportunity retains verifiable cryptographic origin proof tied to the original donor platform.
             </p>
           </div>
