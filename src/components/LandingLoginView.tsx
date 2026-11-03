@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrandWordmark } from './BrandWordmark.tsx';
+import { EcosystemOrbit } from './EcosystemOrbit.tsx';
 import { 
   Mail, 
   Lock, 
@@ -10,6 +11,7 @@ import {
   Database, 
   Coins, 
   ArrowRight, 
+  Users,
   Sparkles,
   CheckCircle2,
   X
@@ -351,8 +353,18 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
         <path d="M1440 900 H760 C 1040 820, 1290 640, 1440 360 Z" fill="#0B195E" />
         <path d="M1440 300 V 360 C 1290 640, 1040 820, 760 900 H 700 C 1000 810, 1270 620, 1440 300 Z" fill="#8A0F23" />
       </svg>
-      {content}
-      <p className="relative z-10 mt-6 px-4 py-1.5 rounded-full bg-white/95 shadow-sm text-[11px] font-bold tracking-[0.25em] uppercase text-brand-navy">
+      {/* Ecosystem actors orbiting the login card, which stands in as the "Research to Impact" hub */}
+      <EcosystemOrbit />
+      <div className="relative z-10 w-full max-w-4xl">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 hidden lg:flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy text-white shadow-lg ring-4 ring-white">
+          <Users className="w-3.5 h-3.5" />
+          <span className="text-[11px] font-black tracking-[0.18em] uppercase">
+            Research <span className="font-medium normal-case tracking-normal text-white/80">to</span> Impact
+          </span>
+        </div>
+        {content}
+      </div>
+      <p className="lg:hidden relative z-10 mt-6 px-4 py-1.5 rounded-full bg-white/95 shadow-sm text-[11px] font-bold tracking-[0.25em] uppercase text-brand-navy">
         Research • Innovate • Empower
       </p>
     </div>
