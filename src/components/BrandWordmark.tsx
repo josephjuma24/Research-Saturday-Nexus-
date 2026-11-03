@@ -29,7 +29,7 @@ export const BrandWordmark: React.FC<BrandWordmarkProps> = ({
     <div className={`inline-flex flex-col ${className}`}>
       <span className={`${s.word} font-black tracking-tight leading-none`}>
         <span className={onDark ? 'text-white' : 'text-brand-navy'}>Iwazo</span>
-        <span className={onDark ? 'text-crimson-300' : 'text-brand-crimson'}>Lab.</span>
+        <span className={'text-brand-crimson'}>Lab.</span>
       </span>
       {showTagline && (
         <>

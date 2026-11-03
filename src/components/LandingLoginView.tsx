@@ -88,16 +88,19 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
 
         {/* Top: Brand Header */}
         <div className="relative z-10">
-          <BrandWordmark onDark size="md" className="mb-8 lg:mb-6" />
+          {/* Crimson only reads on white, so the wordmark sits on a white tile as on the poster */}
+          <div className="inline-block mb-8 lg:mb-6 rounded-xl bg-white px-3.5 py-2.5 shadow-sm">
+            <BrandWordmark size="md" />
+          </div>
 
           {/* Display Headline */}
           <div className="mb-7 lg:mb-5">
             {/* Event hashtag as a single-line display headline */}
             <h1
-              className="whitespace-nowrap font-black tracking-tight leading-none text-white text-[clamp(1.35rem,6.4vw,1.75rem)] md:text-[1.6rem] lg:text-[1.9rem]"
+              className="inline-block whitespace-nowrap rounded-lg bg-white px-3 py-1.5 font-black tracking-tight leading-none text-brand-navy shadow-sm text-[clamp(1.2rem,5.8vw,1.6rem)] md:text-[1.45rem] lg:text-[1.75rem]"
               aria-label="#ResearchSaturdayKE"
             >
-              <span className="text-crimson-300">#</span>ResearchSaturday<span className="text-crimson-300">KE</span>
+              <span className="text-brand-crimson">#</span>ResearchSaturday<span className="text-brand-crimson">KE</span>
             </h1>
             <p className="mt-2.5 text-sm italic text-white/85">Research. Reimagined.</p>
             <div className="brand-rule brand-rule-on-dark w-28 mt-3" aria-hidden="true"><span /><span /><span /></div>
@@ -111,7 +114,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
               { icon: Coins, title: 'Verified Open Funding Scout', body: 'Autonomous daily grant discovery preserving source authenticity and application deadlines.' }
             ].map(({ icon: Icon, title, body }) => (
               <div key={title} className="flex items-start lg:items-center gap-3" title={body}>
-                <div className="w-7 h-7 rounded-full bg-white text-brand-navy flex items-center justify-center shrink-0 mt-0.5 lg:mt-0 ring-2 ring-crimson-400/70">
+                <div className="w-7 h-7 rounded-full bg-white text-brand-navy flex items-center justify-center shrink-0 mt-0.5 lg:mt-0 ring-2 ring-brand-crimson">
                   <Icon className="w-3.5 h-3.5" />
                 </div>
                 <div>
@@ -129,7 +132,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           <p className="text-sm font-bold leading-snug text-white">
             Research dies in isolation.
             <br />
-            Impact happens in <span className="text-crimson-300">ecosystems.</span>
+            Impact happens in <span className="rounded bg-white px-1.5 text-brand-crimson">ecosystems.</span>
           </p>
           <p className="mt-3 text-[10px] text-white/50">
             © 2026 IwazoLab Solutions Limited · Research Saturday Nexus

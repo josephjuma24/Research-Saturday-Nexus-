@@ -318,7 +318,7 @@ export const EcosystemOrbit: React.FC<EcosystemOrbitProps> = ({ hubRef }) => {
           >
             <div
               className={`w-full h-full rounded-full bg-white ${compact ? 'border-[3px]' : 'border-[4px]'} border-brand-navy flex items-center justify-center shadow-lg shadow-brand-navy/20 transition-all duration-300 cursor-default ${
-                isHovered ? 'scale-110 ring-4 ring-crimson-200 shadow-xl' : ''
+                isHovered ? 'scale-110 ring-4 ring-brand-crimson shadow-xl' : ''
               }`}
             >
               <Icon
