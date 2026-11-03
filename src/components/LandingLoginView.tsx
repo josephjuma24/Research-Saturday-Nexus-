@@ -86,13 +86,8 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           aria-hidden="true"
         />
 
-        {/* Top: Brand Header */}
-        <div className="relative z-10">
-          {/* Crimson only reads on white, so the wordmark sits on a white tile as on the poster */}
-          <div className="inline-block mb-8 lg:mb-6 rounded-xl bg-white px-3.5 py-2.5 shadow-sm">
-            <BrandWordmark size="md" />
-          </div>
-
+        {/* Headline and capabilities, centred in the space above the footnote */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center">
           {/* Display Headline */}
           <div className="mb-7 lg:mb-5">
             {/* Event hashtag as a single-line display headline */}
