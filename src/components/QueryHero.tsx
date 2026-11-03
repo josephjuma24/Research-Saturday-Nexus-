@@ -60,7 +60,12 @@ export const QueryHero: React.FC<QueryHeroProps> = ({
   };
 
   return (
-    <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200 pt-6 pb-10 w-full">
+    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white border-b border-slate-200 pt-6 pb-10 w-full">
+      {/* Poster-inspired navy/crimson sweep */}
+      <svg className="pointer-events-none absolute -right-24 -top-24 w-[420px] h-[420px] opacity-[0.07] hidden md:block" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="96" fill="none" stroke="#0B195E" strokeWidth="14" />
+        <circle cx="100" cy="100" r="74" fill="none" stroke="#8A0F23" strokeWidth="6" strokeDasharray="2 8" strokeLinecap="round" />
+      </svg>
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
         
         {/* Top Info Strip: Researcher Status & Profile Completeness (Top of Page) */}
@@ -80,7 +85,7 @@ export const QueryHero: React.FC<QueryHeroProps> = ({
             </div>
             <div className="w-24 h-2 bg-slate-200 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-slate-900 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-brand-navy to-brand-crimson rounded-full transition-all duration-500"
                 style={{ width: `${completenessScore}%` }}
               />
             </div>
@@ -172,9 +177,10 @@ export const QueryHero: React.FC<QueryHeroProps> = ({
             </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
-            What do you need right now?
+          <h1 className="text-3xl sm:text-4xl font-black text-brand-navy tracking-tight mt-2">
+            What do you need right now<span className="text-brand-crimson">?</span>
           </h1>
+          <div className="brand-rule w-28 mt-3" aria-hidden="true"><span /><span /><span /></div>
           <p className="mt-2 text-sm sm:text-[15px] lg:text-base text-slate-600 w-full max-w-none">
             Describe your research bottleneck, target dataset, methodology, or desired collaborator in plain natural language. Nexus indexes expertise, open microdata, and active funding streams simultaneously.
           </p>
@@ -199,7 +205,7 @@ export const QueryHero: React.FC<QueryHeroProps> = ({
             <button
               type="submit"
               disabled={isSearching}
-              className="flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-slate-900 rounded-lg hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shrink-0 shadow-sm"
+              className="flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-brand-navy rounded-lg hover:bg-brand-crimson disabled:opacity-50 disabled:cursor-not-allowed transition-colors shrink-0 shadow-sm"
             >
               {isSearching ? (
                 <span>Matching...</span>

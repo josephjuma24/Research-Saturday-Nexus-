@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { BrandWordmark } from './BrandWordmark.tsx';
 import { 
   Mail, 
   Lock, 
   Eye, 
   EyeOff, 
-  ShieldCheck, 
+
   Bot, 
   Database, 
   Coins, 
@@ -54,7 +55,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
   };
 
   const content = (
-    <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl shadow-slate-900/15 overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-slate-200/80 relative">
+    <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl shadow-brand-navy/20 overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-slate-200/80 relative z-10 relative">
       
       {/* Optional Close Button if onClose is provided */}
       {onClose && (
@@ -69,85 +70,65 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
         </button>
       )}
 
-      {/* LEFT PANEL: Dark Teal/Spruce Gradient with Value Highlights matching reference */}
-      <div className="bg-[#0b2422] text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
-        {/* Ambient subtle glow overlay */}
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* LEFT PANEL: IwazoLab navy field with crimson sweep, after the Research Saturday Kenya poster */}
+      <div className="bg-brand-navy text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+        {/* Curved crimson + white bands echoing the poster */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M400 0 C 300 170, 330 420, 470 640 L 470 0 Z" fill="#8A0F23" opacity="0.9" />
+          <path d="M400 0 C 318 170, 348 420, 488 640 L 488 0 Z" fill="#0B195E" />
+        </svg>
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.08]"
+          style={{ backgroundImage: 'radial-gradient(#FFFFFF 1px, transparent 1px)', backgroundSize: '14px 14px' }}
+          aria-hidden="true"
+        />
 
         {/* Top: Brand Header */}
         <div className="relative z-10">
-          <div className="flex items-center gap-2.5 mb-8">
-            <div className="w-8 h-8 rounded-lg bg-emerald-400/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-            <span className="font-bold text-sm tracking-wide text-white">
-              Nexus Research AI
-            </span>
-          </div>
+          <BrandWordmark onDark size="md" className="mb-8" />
 
-          {/* Bold Display Headline */}
-          <div className="space-y-1 mb-8">
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
-              Autonomous
+          {/* Display Headline */}
+          <div className="mb-7">
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-[0.95] uppercase">
+              Research
+              <br />
+              Saturday
             </h1>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-emerald-400 leading-tight">
-              Research Intelligence
-            </h2>
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
-              Platform
-            </h3>
+            <div className="mt-2 text-sm font-black tracking-[0.6em] text-crimson-300">KENYA</div>
+            <p className="mt-2 text-sm italic text-white/85">Research. Reimagined.</p>
+            <div className="brand-rule brand-rule-on-dark w-28 mt-3" aria-hidden="true"><span /><span /><span /></div>
           </div>
 
-          {/* 3 Key Feature Bullets with Teal Circular Badges */}
-          <div className="space-y-4">
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
-                <Bot className="w-3.5 h-3.5" />
+          {/* Platform capabilities */}
+          <div className="space-y-3.5">
+            {[
+              { icon: Bot, title: 'Automated Researcher Ingestion', body: 'Daily agent harvesting LinkedIn profiles, subject matter experts, and research credentials.' },
+              { icon: Database, title: 'Open Microdata & MCP Harvester', body: 'Weekly crawler ingesting verified open-source datasets, surveys, and African repositories.' },
+              { icon: Coins, title: 'Verified Open Funding Scout', body: 'Autonomous daily grant discovery preserving source authenticity and application deadlines.' }
+            ].map(({ icon: Icon, title, body }) => (
+              <div key={title} className="flex items-start gap-3">
+                <div className="w-7 h-7 rounded-full bg-white text-brand-navy flex items-center justify-center shrink-0 mt-0.5 ring-2 ring-crimson-400/70">
+                  <Icon className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-white tracking-wide">{title}</h4>
+                  <p className="text-[11px] text-white/70 leading-relaxed mt-0.5">{body}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-xs font-semibold text-white tracking-wide">
-                  Automated Researcher Ingestion
-                </h4>
-                <p className="text-[11px] text-slate-300/80 leading-relaxed mt-0.5">
-                  Daily agent harvesting LinkedIn profiles, subject matter experts, and research credentials.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
-                <Database className="w-3.5 h-3.5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-semibold text-white tracking-wide">
-                  Open Microdata & MCP Harvester
-                </h4>
-                <p className="text-[11px] text-slate-300/80 leading-relaxed mt-0.5">
-                  Weekly crawler ingesting verified open-source datasets, surveys, and African repositories.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
-                <Coins className="w-3.5 h-3.5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-semibold text-white tracking-wide">
-                  Verified Open Funding Scout
-                </h4>
-                <p className="text-[11px] text-slate-300/80 leading-relaxed mt-0.5">
-                  Autonomous daily grant discovery preserving source authenticity and application deadlines.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
         {/* Footnote */}
-        <div className="relative z-10 pt-8 mt-6 border-t border-slate-800/80 text-[10px] text-slate-400">
-          <span>© 2026 Research Saturday Nexus. All rights reserved. System Infrastructure 104.3</span>
+        <div className="relative z-10 pt-6 mt-7 border-t border-white/15">
+          <p className="text-sm font-bold leading-snug text-white">
+            Research dies in isolation.
+            <br />
+            Impact happens in <span className="text-crimson-300">ecosystems.</span>
+          </p>
+          <p className="mt-3 text-[10px] text-white/50">
+            © 2026 IwazoLab Solutions Limited · Research Saturday Nexus
+          </p>
         </div>
       </div>
 
@@ -155,9 +136,13 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
       <div className="bg-white p-8 sm:p-10 flex flex-col justify-center">
         <div className="max-w-sm mx-auto w-full">
           
+          <BrandWordmark size="sm" className="mb-6 md:hidden" />
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
-              Welcome Back
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-crimson mb-1">
+              Nexus Intelligence Platform
+            </div>
+            <h2 className="text-2xl font-black text-brand-navy tracking-tight">
+              Welcome back<span className="text-brand-crimson">.</span>
             </h2>
             <p className="text-xs text-slate-500 mt-1">
               Sign in to your account to continue
@@ -187,7 +172,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@institution.ac.ke"
                   required
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-600/30 focus:border-teal-700 transition-colors"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-navy/20 focus:border-brand-navy focus:bg-white transition-colors"
                 />
               </div>
             </div>
@@ -201,7 +186,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                 <button
                   type="button"
                   onClick={() => alert('Password recovery link dispatched to your verified institutional inbox.')}
-                  className="text-[11px] font-medium text-teal-700 hover:text-teal-800 hover:underline"
+                  className="text-[11px] font-medium text-brand-crimson hover:text-crimson-800 hover:underline"
                 >
                   Forgot Password?
                 </button>
@@ -216,7 +201,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
                   required
-                  className="w-full pl-9 pr-10 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-600/30 focus:border-teal-700 transition-colors"
+                  className="w-full pl-9 pr-10 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-navy/20 focus:border-brand-navy focus:bg-white transition-colors"
                 />
                 <button
                   type="button"
@@ -236,7 +221,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                   type="checkbox"
                   checked={keepSignedIn}
                   onChange={(e) => setKeepSignedIn(e.target.checked)}
-                  className="w-3.5 h-3.5 rounded text-teal-700 border-slate-300 focus:ring-teal-600 cursor-pointer"
+                  className="w-3.5 h-3.5 rounded accent-brand-navy border-slate-300 focus:ring-brand-navy cursor-pointer"
                 />
                 <span className="text-xs text-slate-600 select-none">
                   Keep me signed in
@@ -248,7 +233,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-2.5 px-4 bg-[#0e3f3b] hover:bg-[#092d2a] text-white font-semibold text-xs rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full py-2.5 px-4 bg-brand-navy hover:bg-brand-crimson text-white font-bold text-xs rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2 disabled:opacity-60"
             >
               {isLoading ? (
                 <span>Signing in...</span>
@@ -325,7 +310,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
               <button
                 type="button"
                 onClick={() => alert('Institutional account request submitted. An invitation token will be sent to your Dean or Research Directorate.')}
-                className="font-semibold text-teal-700 hover:text-teal-800 hover:underline"
+                className="font-semibold text-brand-crimson hover:text-crimson-800 hover:underline"
               >
                 Request an Account
               </button>
@@ -337,7 +322,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                 onClick={onExploreAsGuest}
                 className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/70 px-3 py-1.5 rounded-md transition-colors"
               >
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-brand-crimson" />
                 <span>Explore Platform as Guest Researcher</span>
               </button>
             </div>
@@ -351,15 +336,25 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
 
   if (isModal) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-navy/70 backdrop-blur-xs animate-in fade-in duration-200">
         {content}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-teal-50/70 via-slate-50 to-emerald-50/50 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="relative min-h-screen w-full overflow-hidden bg-white flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+      {/* Poster backdrop: navy field top-left and bottom-right, separated by crimson sweeps */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 H560 C 330 160, 150 420, 0 640 Z" fill="#0B195E" />
+        <path d="M560 0 H600 C 360 170, 180 430, 0 690 V 640 C 150 420, 330 160, 560 0 Z" fill="#8A0F23" />
+        <path d="M1440 900 H760 C 1040 820, 1290 640, 1440 360 Z" fill="#0B195E" />
+        <path d="M1440 300 V 360 C 1290 640, 1040 820, 760 900 H 700 C 1000 810, 1270 620, 1440 300 Z" fill="#8A0F23" />
+      </svg>
       {content}
+      <p className="relative z-10 mt-6 px-4 py-1.5 rounded-full bg-white/95 shadow-sm text-[11px] font-bold tracking-[0.25em] uppercase text-brand-navy">
+        Research • Innovate • Empower
+      </p>
     </div>
   );
 };

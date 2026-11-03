@@ -1,20 +1,149 @@
 @import "tailwindcss";
 
+/*
+ * IwazoLab brand theme
+ * Navy #0B195E (primary) · Crimson #8A0F23 (accent) · Charcoal #121212 · White
+ * Light navy tint #EEF1FA · Light crimson tint #FBEDEF · Border grey #C9CEDF
+ *
+ * The default Tailwind palettes used across the app are re-pointed at the brand,
+ * so existing utility classes pick up the theme without per-component rewrites:
+ *   slate   -> navy-tinted neutrals (text, borders, surfaces, dark fills)
+ *   blue    -> navy scale (links, info accents)
+ *   teal    -> navy scale
+ *   emerald -> crimson scale (primary accent, highlights, live indicators)
+ *   purple  -> crimson scale
+ * amber / red / rose stay as functional warning and error colours.
+ */
+@theme {
+  --font-sans: "Lato", Calibri, Carlito, Arial, ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-navy: #0B195E;
+  --color-brand-crimson: #8A0F23;
+  --color-brand-charcoal: #121212;
+  --color-brand-navy-tint: #EEF1FA;
+  --color-brand-crimson-tint: #FBEDEF;
+  --color-brand-border: #C9CEDF;
+
+  --color-navy-50: #EEF1FA;
+  --color-navy-100: #DDE2F3;
+  --color-navy-200: #BCC5E7;
+  --color-navy-300: #8F9CD1;
+  --color-navy-400: #5F6FB5;
+  --color-navy-500: #36479A;
+  --color-navy-600: #1D2D82;
+  --color-navy-700: #0B195E;
+  --color-navy-800: #09144C;
+  --color-navy-900: #070F3B;
+  --color-navy-950: #040829;
+
+  --color-crimson-50: #FBEDEF;
+  --color-crimson-100: #F7DBE0;
+  --color-crimson-200: #EFB7C1;
+  --color-crimson-300: #E08A9A;
+  --color-crimson-400: #C9566C;
+  --color-crimson-500: #A82840;
+  --color-crimson-600: #8A0F23;
+  --color-crimson-700: #750C1E;
+  --color-crimson-800: #5F0A18;
+  --color-crimson-900: #4A0813;
+  --color-crimson-950: #2E050C;
+
+  /* Navy-tinted neutrals */
+  --color-slate-50: #F6F7FC;
+  --color-slate-100: #EEF1FA;
+  --color-slate-200: #DDE1F0;
+  --color-slate-300: #C9CEDF;
+  --color-slate-400: #9AA1C0;
+  --color-slate-500: #6B7398;
+  --color-slate-600: #4A537A;
+  --color-slate-700: #2F3964;
+  --color-slate-800: #1A2668;
+  --color-slate-900: #0B195E;
+  --color-slate-950: #070F3D;
+
+  --color-blue-50: var(--color-navy-50);
+  --color-blue-100: var(--color-navy-100);
+  --color-blue-200: var(--color-navy-200);
+  --color-blue-300: var(--color-navy-300);
+  --color-blue-400: var(--color-navy-400);
+  --color-blue-500: var(--color-navy-500);
+  --color-blue-600: var(--color-navy-600);
+  --color-blue-700: var(--color-navy-700);
+  --color-blue-800: var(--color-navy-800);
+  --color-blue-900: var(--color-navy-900);
+  --color-blue-950: var(--color-navy-950);
+
+  --color-teal-50: var(--color-navy-50);
+  --color-teal-100: var(--color-navy-100);
+  --color-teal-200: var(--color-navy-200);
+  --color-teal-300: var(--color-navy-300);
+  --color-teal-400: var(--color-navy-400);
+  --color-teal-500: var(--color-navy-500);
+  --color-teal-600: var(--color-navy-600);
+  --color-teal-700: var(--color-navy-700);
+  --color-teal-800: var(--color-navy-800);
+  --color-teal-900: var(--color-navy-900);
+  --color-teal-950: var(--color-navy-950);
+
+  --color-emerald-50: var(--color-crimson-50);
+  --color-emerald-100: var(--color-crimson-100);
+  --color-emerald-200: var(--color-crimson-200);
+  --color-emerald-300: var(--color-crimson-300);
+  --color-emerald-400: var(--color-crimson-400);
+  --color-emerald-500: var(--color-crimson-500);
+  --color-emerald-600: var(--color-crimson-600);
+  --color-emerald-700: var(--color-crimson-700);
+  --color-emerald-800: var(--color-crimson-800);
+  --color-emerald-900: var(--color-crimson-900);
+  --color-emerald-950: var(--color-crimson-950);
+
+  --color-purple-50: var(--color-crimson-50);
+  --color-purple-100: var(--color-crimson-100);
+  --color-purple-200: var(--color-crimson-200);
+  --color-purple-300: var(--color-crimson-300);
+  --color-purple-400: var(--color-crimson-400);
+  --color-purple-500: var(--color-crimson-500);
+  --color-purple-600: var(--color-crimson-600);
+  --color-purple-700: var(--color-crimson-700);
+  --color-purple-800: var(--color-crimson-800);
+  --color-purple-900: var(--color-crimson-900);
+  --color-purple-950: var(--color-crimson-950);
+}
+
+@layer base {
+  :root {
+    --navy: #0B195E;
+    --crimson: #8A0F23;
+    --charcoal: #121212;
+    --white: #FFFFFF;
+    accent-color: #0B195E;
+  }
+
+  ::selection {
+    background: #F7DBE0;
+    color: #0B195E;
+  }
+
+  :focus-visible {
+    outline-color: #0B195E;
+  }
+}
+
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
     height: 6px;
     width: 6px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #EEF1FA;
     border-radius: 9999px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #C9CEDF;
     border-radius: 9999px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #9AA1C0;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -23,5 +152,23 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Crimson–navy–crimson signature rule from the IwazoLab wordmark */
+  .brand-rule {
+    display: flex;
+    gap: 6px;
+  }
+  .brand-rule > span {
+    height: 3px;
+    flex: 1;
+    border-radius: 9999px;
+    background: #8A0F23;
+  }
+  .brand-rule > span:nth-child(2) {
+    background: #0B195E;
+  }
+  .brand-rule-on-dark > span:nth-child(2) {
+    background: #FFFFFF;
   }
 }

@@ -20,6 +20,7 @@ import { AutomatedAgentView } from './components/AutomatedAgentView.tsx';
 import { DatasetAgentView } from './components/DatasetAgentView.tsx';
 import { FundingAgentView } from './components/FundingAgentView.tsx';
 import { LandingLoginView } from './components/LandingLoginView.tsx';
+import { BrandWordmark } from './components/BrandWordmark.tsx';
 import { SettingsModal } from './components/SettingsModal.tsx';
 
 import { 
@@ -321,7 +322,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100/60 text-slate-900 font-sans flex antialiased">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex antialiased">
       
       {/* Toast Notification Banner */}
       {toastMessage && (
@@ -476,12 +477,15 @@ export default function App() {
         </main>
 
         {/* Quiet Footer - Full Width Fluid */}
-        <footer className="bg-white border-t border-slate-200 mt-auto py-6">
+        <footer className="bg-white mt-auto pb-6">
+          <div className="brand-rule mb-6" aria-hidden="true"><span className="rounded-none!" /><span className="rounded-none!" /><span className="rounded-none!" /></div>
           <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <div>
-              <span className="font-semibold text-slate-700">Research Saturday Nexus</span>
-              <span aria-hidden="true" className="mx-2">·</span>
-              <span>Intelligent Research Collaboration Platform</span>
+            <div className="flex items-center gap-3">
+              <BrandWordmark size="sm" showTagline={false} />
+              <span aria-hidden="true" className="h-4 w-px bg-slate-300" />
+              <span className="font-semibold text-slate-700">Research Saturday Kenya</span>
+              <span aria-hidden="true">·</span>
+              <span className="italic">Research. Reimagined.</span>
             </div>
 
             <div className="flex items-center gap-4">

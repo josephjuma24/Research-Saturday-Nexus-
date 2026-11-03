@@ -198,8 +198,8 @@ export const AutomatedAgentView: React.FC<AutomatedAgentViewProps> = ({
     <div className="space-y-8">
       
       {/* Hero Banner: Automated Agent Status & Overview */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-850 to-blue-950 text-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="bg-brand-navy text-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-800 relative overflow-hidden">
+        <svg className="absolute right-0 top-0 h-full w-1/3 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M70 0 C 45 35, 55 70, 100 100 L 100 0 Z" fill="#8A0F23" opacity="0.9" /><path d="M78 0 C 55 35, 63 70, 108 100 L 108 0 Z" fill="#0B195E" /></svg>
         
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
