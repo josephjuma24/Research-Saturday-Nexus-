@@ -1,0 +1,7 @@
+{
+  "name": "Research Saturday Nexus",
+  "description": "Intelligent Research Collaboration Platform and Technical Architecture Blueprint featuring natural-language matching, 5-layer research lifecycle, and enterprise Django/pgvector specifications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
