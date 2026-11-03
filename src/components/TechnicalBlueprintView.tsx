@@ -208,7 +208,7 @@ export const TechnicalBlueprintView: React.FC = () => {
                         className="flex items-center gap-1 hover:text-white transition-colors py-0.5 px-2 rounded bg-slate-800"
                         aria-label={`Copy code for ${cb.filename}`}
                       >
-                        {isCopied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                        {isCopied ? <Check className="w-3.5 h-3.5 p-px rounded-full bg-white text-brand-crimson" /> : <Copy className="w-3 h-3" />}
                         <span>{isCopied ? 'Copied' : 'Copy Code'}</span>
                       </button>
                     </div>

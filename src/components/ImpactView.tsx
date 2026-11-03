@@ -5,8 +5,8 @@ import { TrendingUp, Award, ExternalLink, ShieldAlert, BarChart3, Globe, Sparkle
 const SDG_DEFINITIONS: Record<number, { title: string; color: string; desc: string }> = {
   1: { title: "SDG 1: No Poverty", color: "bg-red-50 text-red-700 border-red-200", desc: "Target 1.4: Equal rights to economic resources & financial services" },
   2: { title: "SDG 2: Zero Hunger", color: "bg-amber-50 text-amber-700 border-amber-200", desc: "Target 2.3: Double agricultural productivity of small-scale food producers" },
-  8: { title: "SDG 8: Decent Work & Economic Growth", color: "bg-purple-50 text-purple-700 border-purple-200", desc: "Target 8.10: Strengthen capacity of domestic financial institutions" },
-  13: { title: "SDG 13: Climate Action", color: "bg-emerald-50 text-emerald-700 border-emerald-200", desc: "Target 13.1: Strengthen resilience to climate-related hazards" }
+  8: { title: "SDG 8: Decent Work & Economic Growth", color: "bg-purple-50 text-purple-700 border-brand-crimson", desc: "Target 8.10: Strengthen capacity of domestic financial institutions" },
+  13: { title: "SDG 13: Climate Action", color: "bg-emerald-50 text-emerald-700 border-brand-crimson", desc: "Target 13.1: Strengthen resilience to climate-related hazards" }
 };
 
 export const ImpactView: React.FC = () => {

@@ -192,8 +192,8 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
         
         <div className="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-6">
           <div className="space-y-2 min-w-0 lg:flex-1 max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-brand-crimson border border-white shadow-sm text-xs font-bold">
+              <span className="w-2 h-2 rounded-full bg-brand-crimson animate-pulse" />
               <span>Weekly Autonomous Open Data & MCP Harvester</span>
             </div>
             
@@ -207,7 +207,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
 
             <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300 pt-2 font-mono">
               <span className="flex items-center gap-1.5 bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700">
-                <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                <Clock className="w-4 h-4 p-0.5 rounded-full bg-white text-brand-crimson" />
                 Schedule: <span className="text-white font-semibold">Weekly on Sundays at 00:00 UTC (cron 0 0 * * 0)</span>
               </span>
               <span className="flex items-center gap-1.5 bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700">
@@ -232,8 +232,8 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
               disabled={isRunning}
               className={`flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all shadow-md ${
                 isRunning
-                  ? 'bg-emerald-600/50 text-emerald-200 cursor-not-allowed'
-                  : 'bg-emerald-600 hover:bg-emerald-500 text-white active:scale-98 cursor-pointer'
+                  ? 'bg-brand-crimson/60 text-white/80 cursor-not-allowed'
+                  : 'bg-brand-crimson hover:bg-crimson-700 text-white active:scale-98 cursor-pointer'
               }`}
             >
               <RefreshCw className={`w-4 h-4 ${isRunning ? 'animate-spin' : ''}`} />
@@ -245,7 +245,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                 onClick={handleToggleSchedule}
                 className="flex-1 flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors cursor-pointer"
               >
-                <span className={`w-2 h-2 rounded-full ${agentStatus.isScheduled ? 'bg-emerald-400' : 'bg-slate-500'}`} />
+                <span className={`w-2 h-2 rounded-full ${agentStatus.isScheduled ? 'bg-brand-crimson ring-2 ring-white' : 'bg-slate-500'}`} />
                 <span>{agentStatus.isScheduled ? 'Weekly Cron Active' : 'Weekly Cron Paused'}</span>
               </button>
 
@@ -264,7 +264,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
 
       {/* Manual MCP / Open Repo Ingest Drawer */}
       {showManualInput && (
-        <div className="bg-white border border-emerald-200 rounded-xl p-5 shadow-xs animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="bg-white border border-brand-crimson rounded-xl p-5 shadow-xs animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <Database className="w-4 h-4 text-emerald-600" />
@@ -294,7 +294,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                   value={manualTitle}
                   onChange={(e) => setManualTitle(e.target.value)}
                   placeholder="e.g. Kenya Smallholder Horticultural Yield & Cold Chain Panel"
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-crimson"
                 />
               </div>
 
@@ -306,7 +306,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                   value={manualPublisher}
                   onChange={(e) => setManualPublisher(e.target.value)}
                   placeholder="e.g. KALRO, HDX, Open Africa, World Bank"
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-crimson"
                 />
               </div>
 
@@ -317,7 +317,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                   value={manualUrl}
                   onChange={(e) => setManualUrl(e.target.value)}
                   placeholder="mcp://openafrica.net/dataset/... or https://..."
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500 font-mono"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-crimson font-mono"
                 />
               </div>
 
@@ -326,7 +326,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                 <select
                   value={manualLicense}
                   onChange={(e) => setManualLicense(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-brand-crimson"
                 >
                   <option value="Open Data / CC-BY-4.0">Creative Commons Attribution 4.0 (CC-BY-4.0)</option>
                   <option value="CC0 1.0 Public Domain Dedicated">CC0 1.0 Universal Public Domain Dedication</option>
@@ -343,7 +343,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                   value={manualDomain}
                   onChange={(e) => setManualDomain(e.target.value)}
                   placeholder="e.g. Agricultural Economics, Soil Science, Climate"
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-crimson"
                 />
               </div>
 
@@ -354,7 +354,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                   value={manualRecords}
                   onChange={(e) => setManualRecords(e.target.value)}
                   placeholder="e.g. 24,000"
-                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500 font-mono"
+                  className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-crimson font-mono"
                 />
               </div>
             </div>
@@ -367,7 +367,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                 value={manualDesc}
                 onChange={(e) => setManualDesc(e.target.value)}
                 placeholder="Describe sampling method, variables included, time period covered, and open access permissions..."
-                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-crimson"
               />
             </div>
 
@@ -404,7 +404,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
             </p>
           </div>
           {activeStage && (
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-xs font-mono text-emerald-700 font-semibold">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-brand-crimson text-xs font-mono text-emerald-700 font-semibold">
               <span className="w-2 h-2 rounded-full bg-emerald-600 animate-ping" />
               <span>Pipeline Stage Active: {activeStage}</span>
             </div>
@@ -416,7 +416,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
           {/* Phase 1 */}
           <div className={`p-4 rounded-xl border transition-all ${
             activeStage === 'MCP Discovery'
-              ? 'border-emerald-400 bg-emerald-50/50 ring-2 ring-emerald-100'
+              ? 'border-brand-crimson bg-emerald-50/50 ring-2 ring-emerald-100'
               : 'border-slate-200 bg-slate-50/50'
           }`}>
             <div className="flex items-center justify-between">
@@ -440,7 +440,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
           {/* Phase 2 */}
           <div className={`p-4 rounded-xl border transition-all ${
             activeStage === 'License Audit'
-              ? 'border-emerald-400 bg-emerald-50/50 ring-2 ring-emerald-100'
+              ? 'border-brand-crimson bg-emerald-50/50 ring-2 ring-emerald-100'
               : 'border-slate-200 bg-slate-50/50'
           }`}>
             <div className="flex items-center justify-between">
@@ -464,7 +464,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
           {/* Phase 3 */}
           <div className={`p-4 rounded-xl border transition-all ${
             activeStage === 'Schema Normalization'
-              ? 'border-emerald-400 bg-emerald-50/50 ring-2 ring-emerald-100'
+              ? 'border-brand-crimson bg-emerald-50/50 ring-2 ring-emerald-100'
               : 'border-slate-200 bg-slate-50/50'
           }`}>
             <div className="flex items-center justify-between">
@@ -569,7 +569,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                   value={searchFilter}
                   onChange={(e) => setSearchFilter(e.target.value)}
                   placeholder="Filter open datasets..."
-                  className="pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-emerald-500 w-64"
+                  className="pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-crimson w-64"
                 />
               </div>
             </div>
@@ -597,14 +597,14 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
               {filteredDatasets.map((d) => (
                 <div 
                   key={d.id}
-                  className="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 hover:border-emerald-300 hover:shadow-xs transition-all w-full group"
+                  className="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 hover:border-brand-crimson hover:shadow-xs transition-all w-full group"
                 >
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                     {/* Left / Main Dataset Information */}
                     <div className="flex-1 min-w-0 space-y-3">
                       {/* Top Badges: License & Source Protocol */}
                       <div className="flex flex-wrap items-center gap-2.5">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-brand-crimson">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                           <span>{d.license}</span>
                         </span>
@@ -683,7 +683,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
                       {/* Records badge on desktop */}
                       <div className="hidden lg:flex flex-col items-end text-right">
                         <span className="text-[11px] font-mono text-slate-400">Indexed Microdata Size</span>
-                        <div className="mt-1 flex items-center gap-1.5 text-xs bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md text-emerald-900 font-bold font-mono">
+                        <div className="mt-1 flex items-center gap-1.5 text-xs bg-emerald-50 border border-brand-crimson px-2.5 py-1 rounded-md text-emerald-900 font-bold font-mono">
                           <Database className="w-3.5 h-3.5 text-emerald-600" />
                           <span>{(d.recordCount || 10000).toLocaleString()} Records</span>
                         </div>
@@ -741,14 +741,14 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
             {agentStatus.mcpServers.map((server) => (
               <div 
                 key={server.id}
-                className="bg-white border border-slate-200 rounded-xl p-5 hover:border-emerald-300 transition-colors space-y-3"
+                className="bg-white border border-slate-200 rounded-xl p-5 hover:border-brand-crimson transition-colors space-y-3"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-brand-crimson animate-pulse" />
                     <h4 className="text-sm font-bold text-slate-900">{server.name}</h4>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded font-semibold uppercase">
+                  <span className="text-[10px] font-mono px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-brand-crimson rounded font-semibold uppercase">
                     {server.protocol}
                   </span>
                 </div>
@@ -855,11 +855,11 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
       <div className="bg-slate-950 text-slate-300 rounded-xl p-5 border border-slate-800 font-mono text-xs shadow-inner">
         <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
           <div className="flex items-center gap-2">
-            <Terminal className="w-4 h-4 text-emerald-400" />
+            <Terminal className="w-5 h-5 p-0.5 rounded bg-white text-brand-crimson" />
             <span className="text-white font-bold">Autonomous Dataset Harvester & MCP Execution Log</span>
           </div>
           <div className="flex items-center gap-2 text-[11px] text-slate-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span className="w-2 h-2 rounded-full bg-brand-crimson ring-2 ring-white" />
             <span>MCP Protocol Active</span>
           </div>
         </div>
@@ -869,7 +869,7 @@ export const DatasetAgentView: React.FC<DatasetAgentViewProps> = ({
             <div key={log.id} className="leading-relaxed flex items-start gap-2">
               <span className="text-slate-500 shrink-0 font-mono">[{log.timestamp}]</span>
               <span className={`px-1.5 py-0.2 rounded text-[10px] font-bold shrink-0 ${
-                log.stage === 'Completed' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
+                log.stage === 'Completed' ? 'bg-white text-brand-crimson border border-white' :
                 log.stage === 'License Audit' ? 'bg-teal-950 text-teal-300 border border-teal-800' :
                 log.stage === 'MCP Discovery' ? 'bg-blue-950 text-blue-300 border border-blue-800' :
                 'bg-slate-800 text-slate-300'

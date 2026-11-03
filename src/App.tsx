@@ -307,7 +307,7 @@ export default function App() {
       <div className="relative">
         {toastMessage && (
           <div className="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-lg border border-slate-700 flex items-center gap-2.5 text-xs animate-in fade-in slide-in-from-bottom-2 duration-200">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <CheckCircle2 className="w-5 h-5 p-0.5 rounded-full bg-white text-brand-crimson shrink-0" />
             <span>{toastMessage}</span>
           </div>
         )}
@@ -327,7 +327,7 @@ export default function App() {
       {/* Toast Notification Banner */}
       {toastMessage && (
         <div className="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-lg border border-slate-700 flex items-center gap-2.5 text-xs animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <CheckCircle2 className="w-5 h-5 p-0.5 rounded-full bg-white text-brand-crimson shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}

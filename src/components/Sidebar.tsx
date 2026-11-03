@@ -176,7 +176,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   onClick={() => handleItemClick(item.id)}
                   className={`relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-colors text-left group ${
                     isActive
-                      ? 'bg-slate-900 text-white shadow-xs before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1 before:rounded-r-full before:bg-crimson-400'
+                      ? 'bg-slate-900 text-white shadow-xs before:absolute before:-left-3 before:top-1.5 before:bottom-1.5 before:w-1 before:rounded-r-full before:bg-brand-crimson'
                       : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
@@ -203,7 +203,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
               <span>Autonomous Agents</span>
               <span className="flex items-center gap-1 text-[9px] text-emerald-600 font-mono font-medium lowercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson animate-pulse" />
                 Active
               </span>
             </div>
@@ -256,7 +256,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <div className="flex-1 min-w-0">
                 <div className="truncate leading-tight flex items-center justify-between gap-1">
                   <span>Open Data & MCP Agent</span>
-                  <span className="text-[9px] font-mono px-1 rounded bg-emerald-100/70 text-emerald-800 font-medium">Weekly</span>
+                  <span className="text-[9px] font-mono px-1 rounded bg-brand-crimson-tint text-brand-crimson font-semibold">Weekly</span>
                 </div>
                 <div className={`text-[10px] truncate font-normal mt-0.5 ${
                   activeTab === 'dataset-agent' ? 'text-slate-300' : 'text-slate-500'
@@ -331,7 +331,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           
           {/* User Profile Mini Banner */}
           <div className="flex items-center gap-2.5 px-1">
-            <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs font-mono shrink-0 ring-2 ring-crimson-200">
+            <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs font-mono shrink-0 ring-2 ring-brand-crimson">
               JJ
             </div>
             <div className="min-w-0 flex-1">

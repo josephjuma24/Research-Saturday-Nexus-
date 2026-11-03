@@ -158,7 +158,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           </div>
 
           {ssoMessage && (
-            <div className="mb-4 p-2.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg text-xs flex items-center gap-2 animate-in fade-in">
+            <div className="mb-4 p-2.5 bg-emerald-50 border border-brand-crimson text-emerald-800 rounded-lg text-xs flex items-center gap-2 animate-in fade-in">
               <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               <span>{ssoMessage}</span>
             </div>

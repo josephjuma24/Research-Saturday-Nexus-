@@ -74,10 +74,10 @@ export const ScrollableSection: React.FC<ScrollableSectionProps> = ({
   };
 
   const accentBorderClass = {
-    emerald: 'focus-visible:ring-emerald-500',
+    emerald: 'focus-visible:ring-brand-crimson',
     amber: 'focus-visible:ring-amber-500',
     blue: 'focus-visible:ring-blue-500',
-    purple: 'focus-visible:ring-purple-500',
+    purple: 'focus-visible:ring-brand-crimson',
   }[accentColor];
 
   const dotActiveClass = {
