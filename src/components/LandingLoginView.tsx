@@ -92,13 +92,14 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
 
           {/* Display Headline */}
           <div className="mb-7 lg:mb-5">
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.1rem] font-black tracking-tight text-white leading-[0.95] uppercase">
-              Research
-              <br />
-              Saturday
+            {/* Event hashtag as a single-line display headline */}
+            <h1
+              className="whitespace-nowrap font-black tracking-tight leading-none text-white text-[clamp(1.35rem,6.4vw,1.75rem)] md:text-[1.6rem] lg:text-[1.9rem]"
+              aria-label="#ResearchSaturdayKE"
+            >
+              <span className="text-crimson-300">#</span>ResearchSaturday<span className="text-crimson-300">KE</span>
             </h1>
-            <div className="mt-2 text-sm font-black tracking-[0.6em] text-crimson-300">KENYA</div>
-            <p className="mt-2 text-sm italic text-white/85">Research. Reimagined.</p>
+            <p className="mt-2.5 text-sm italic text-white/85">Research. Reimagined.</p>
             <div className="brand-rule brand-rule-on-dark w-28 mt-3" aria-hidden="true"><span /><span /><span /></div>
           </div>
 
