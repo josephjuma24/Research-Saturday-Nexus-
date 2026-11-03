@@ -11,8 +11,12 @@ import {
 
 /**
  * "Research thrives in ecosystems" ring from the Research Saturday Kenya poster,
- * animated as a slow elliptical orbit behind the login card. The login card sits
+ * animated as a slow elliptical orbit around the login card. The login card sits
  * at the hub ("Research to Impact"); the seven ecosystem actors circle it.
+ *
+ * The ellipse is sized from the hub element so the card always sits inside the ring
+ * with clearance. When the viewport is too small for that, the hub is scaled down
+ * proportionally; below MIN_HUB_SCALE the orbit hides and the card returns to normal.
  *
  * Positions are written straight to the DOM each frame so React does not re-render
  * during the animation. Hovering a node eases the orbit to a stop and shows its role.
@@ -40,6 +44,9 @@ const NODES: EcosystemNode[] = [
 const CONNECTORS: Array<'solid' | 'dotted'> = ['solid', 'dotted', 'solid', 'dotted', 'solid', 'dotted', 'dotted'];
 
 const NODE_SIZE = 72;
+// Smaller nodes on shorter screens (most laptops) so the ring still fits around the card
+const NODE_SIZE_COMPACT = 56;
+const COMPACT_BELOW_HEIGHT = 900;
 
 const TIP_PLACEMENT_CLASSES = {
   left: 'right-full mr-4 top-1/2 -translate-y-1/2',
@@ -50,8 +57,21 @@ const TIP_PLACEMENT_CLASSES = {
 const SECONDS_PER_REVOLUTION = 90;
 const MIN_WIDTH = 1024;
 const MIN_HEIGHT = 620;
+const MIN_HUB_SCALE = 0.78;
+// Caps how far wider than the card the orbit may run on large screens
+const MAX_ORBIT_STRETCH = 1.6;
+// Gap between the card's corner and the orbit path, enough for a node to pass
+const hubClearance = (nodeSize: number) => nodeSize / 2 + 22;
+// Room the outermost nodes and their labels need from the viewport edge
+const edgeMarginX = (nodeSize: number) => nodeSize / 2 + 40;
+const edgeMarginY = (nodeSize: number) => nodeSize / 2 + 38;
 
-export const EcosystemOrbit: React.FC = () => {
+interface EcosystemOrbitProps {
+  /** The element the orbit circles: the login card wrapper */
+  hubRef: React.RefObject<HTMLElement | null>;
+}
+
+export const EcosystemOrbit: React.FC<EcosystemOrbitProps> = ({ hubRef }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Array<HTMLDivElement | null>>([]);
   const arcRefs = useRef<Array<SVGPathElement | null>>([]);
@@ -64,6 +84,7 @@ export const EcosystemOrbit: React.FC = () => {
   // and drop below the node when there is no room beside it near the screen edge.
   const [tipPlacement, setTipPlacement] = useState<'left' | 'right' | 'below-left' | 'below-right'>('right');
   const [visible, setVisible] = useState(false);
+  const [compact, setCompact] = useState(false);
 
   useEffect(() => {
     hoveredRef.current = hovered;
@@ -78,8 +99,11 @@ export const EcosystemOrbit: React.FC = () => {
 
     let width = 0;
     let height = 0;
+    let cx = 0;
+    let cy = 0;
     let rx = 0;
     let ry = 0;
+    let nodeSize = NODE_SIZE;
     let angle = -Math.PI / 2; // first node starts at the top
     let speed = baseSpeed;
     let last = performance.now();
@@ -88,27 +112,92 @@ export const EcosystemOrbit: React.FC = () => {
     const measure = () => {
       width = container.clientWidth;
       height = container.clientHeight;
+      cx = width / 2;
+      cy = height / 2;
       rx = width * 0.44;
       ry = height * 0.4;
-      setVisible(width >= MIN_WIDTH && height >= MIN_HEIGHT);
+
+      nodeSize = height < COMPACT_BELOW_HEIGHT ? NODE_SIZE_COMPACT : NODE_SIZE;
+      const clearance = hubClearance(nodeSize);
+      const hub = hubRef.current;
+      let fits = width >= MIN_WIDTH && height >= MIN_HEIGHT;
+
+      if (hub && fits) {
+        // offset* values ignore the scale transform applied below
+        const halfW = hub.offsetWidth / 2;
+        const halfH = hub.offsetHeight / 2;
+        cx = hub.offsetLeft + halfW;
+        cy = hub.offsetTop + halfH;
+
+        const maxRx = Math.min(cx, width - cx) - edgeMarginX(nodeSize);
+        const maxRy = Math.min(cy, height - cy) - edgeMarginY(nodeSize);
+
+        // Smallest ellipse (for a given width) whose path clears the scaled card's
+        // corners by the clearance: corner (a, b) satisfies a²/rx² + b²/ry² = 1.
+        const fitAt = (scale: number) => {
+          const a = halfW * scale + clearance;
+          const b = halfH * scale + clearance;
+          // Prefer a ring close to the card's proportions; widen to the full
+          // available width only when that is what it takes to fit the height.
+          for (const fitRx of [Math.min(maxRx, a * MAX_ORBIT_STRETCH), maxRx]) {
+            if (a >= fitRx) continue;
+            const fitRy = b / Math.sqrt(1 - (a / fitRx) ** 2);
+            if (fitRy <= maxRy) return { rx: fitRx, ry: fitRy };
+          }
+          return null;
+        };
+
+        // Largest scale (up to 1) that fits, by bisection
+        let best = fitAt(1);
+        let scale = 1;
+        if (!best) {
+          let lo = MIN_HUB_SCALE;
+          let hi = 1;
+          best = fitAt(lo);
+          scale = lo;
+          if (best) {
+            for (let i = 0; i < 12; i++) {
+              const mid = (lo + hi) / 2;
+              const fit = fitAt(mid);
+              if (fit) { lo = mid; best = fit; scale = mid; } else { hi = mid; }
+            }
+          }
+        }
+
+        if (best) {
+          rx = best.rx;
+          ry = best.ry;
+          hub.style.transform = scale < 1 ? `scale(${scale})` : '';
+        } else {
+          fits = false;
+        }
+      }
+
+      if (hub && !fits) hub.style.transform = '';
+      setVisible(fits);
+      setCompact(nodeSize === NODE_SIZE_COMPACT);
+      nodeRefs.current.forEach((node) => {
+        if (node) {
+          node.style.width = `${nodeSize}px`;
+          node.style.height = `${nodeSize}px`;
+        }
+      });
     };
 
     const step = (count: number) => (Math.PI * 2 * count) / NODES.length;
     const point = (a: number) => ({
-      x: width / 2 + rx * Math.cos(a),
-      y: height / 2 + ry * Math.sin(a)
+      x: cx + rx * Math.cos(a),
+      y: cy + ry * Math.sin(a)
     });
 
     const draw = () => {
-      const cx = width / 2;
-      const cy = height / 2;
-      const gap = (NODE_SIZE / 2 + 10) / Math.min(rx, ry);
+      const gap = (nodeSize / 2 + 10) / Math.min(rx, ry);
 
       if (discRef.current) {
         discRef.current.setAttribute('cx', String(cx));
         discRef.current.setAttribute('cy', String(cy));
-        discRef.current.setAttribute('rx', String(rx + NODE_SIZE));
-        discRef.current.setAttribute('ry', String(ry + NODE_SIZE));
+        discRef.current.setAttribute('rx', String(rx + nodeSize));
+        discRef.current.setAttribute('ry', String(ry + nodeSize));
       }
 
       NODES.forEach((_, i) => {
@@ -117,7 +206,7 @@ export const EcosystemOrbit: React.FC = () => {
 
         const node = nodeRefs.current[i];
         if (node) {
-          node.style.transform = `translate(${p.x - NODE_SIZE / 2}px, ${p.y - NODE_SIZE / 2}px)`;
+          node.style.transform = `translate(${p.x - nodeSize / 2}px, ${p.y - nodeSize / 2}px)`;
         }
 
         const arc = arcRefs.current[i];
@@ -134,7 +223,7 @@ export const EcosystemOrbit: React.FC = () => {
           const len = Math.hypot(dx, dy) || 1;
           const ux = dx / len;
           const uy = dy / len;
-          const start = NODE_SIZE / 2 + 14;
+          const start = nodeSize / 2 + 14;
           spoke.setAttribute('x1', String(p.x + ux * start));
           spoke.setAttribute('y1', String(p.y + uy * start));
           spoke.setAttribute('x2', String(p.x + ux * (start + 34)));
@@ -159,6 +248,7 @@ export const EcosystemOrbit: React.FC = () => {
       draw();
     });
     observer.observe(container);
+    if (hubRef.current) observer.observe(hubRef.current);
     measure();
     draw();
     frame = requestAnimationFrame(tick);
@@ -166,8 +256,9 @@ export const EcosystemOrbit: React.FC = () => {
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
+      if (hubRef.current) hubRef.current.style.transform = '';
     };
-  }, []);
+  }, [hubRef]);
 
   return (
     <div
@@ -209,7 +300,7 @@ export const EcosystemOrbit: React.FC = () => {
             key={node.label}
             ref={(el) => { nodeRefs.current[i] = el; }}
             className="absolute left-0 top-0 pointer-events-auto will-change-transform"
-            style={{ width: NODE_SIZE, height: NODE_SIZE }}
+            style={{ width: compact ? NODE_SIZE_COMPACT : NODE_SIZE, height: compact ? NODE_SIZE_COMPACT : NODE_SIZE }}
             onMouseEnter={(e) => {
               const container = containerRef.current;
               if (container) {
@@ -226,12 +317,12 @@ export const EcosystemOrbit: React.FC = () => {
             onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
           >
             <div
-              className={`w-full h-full rounded-full bg-white border-[4px] border-brand-navy flex items-center justify-center shadow-lg shadow-brand-navy/20 transition-all duration-300 cursor-default ${
+              className={`w-full h-full rounded-full bg-white ${compact ? 'border-[3px]' : 'border-[4px]'} border-brand-navy flex items-center justify-center shadow-lg shadow-brand-navy/20 transition-all duration-300 cursor-default ${
                 isHovered ? 'scale-110 ring-4 ring-crimson-200 shadow-xl' : ''
               }`}
             >
               <Icon
-                className={`w-7 h-7 ${node.tone === 'crimson' ? 'text-brand-crimson' : 'text-brand-navy'}`}
+                className={`${compact ? 'w-5 h-5' : 'w-7 h-7'} ${node.tone === 'crimson' ? 'text-brand-crimson' : 'text-brand-navy'}`}
                 strokeWidth={2.2}
               />
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { BrandWordmark } from './BrandWordmark.tsx';
 import { EcosystemOrbit } from './EcosystemOrbit.tsx';
 import { 
@@ -36,6 +36,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
   const [keepSignedIn, setKeepSignedIn] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [ssoMessage, setSsoMessage] = useState<string | null>(null);
+  const hubRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +58,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
   };
 
   const content = (
-    <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl shadow-brand-navy/20 overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-slate-200/80 relative z-10 relative">
+    <div className="w-full max-w-4xl lg:max-w-[50rem] bg-white rounded-3xl shadow-2xl shadow-brand-navy/20 overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-slate-200/80 relative z-10">
       
       {/* Optional Close Button if onClose is provided */}
       {onClose && (
@@ -67,13 +68,13 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           aria-label="Return to Nexus Platform"
           title="Return to Nexus Platform"
         >
-          <span className="hidden sm:inline">Return to Workspace</span>
+          <span className="hidden sm:inline lg:hidden">Return to Workspace</span>
           <X className="w-3.5 h-3.5" />
         </button>
       )}
 
       {/* LEFT PANEL: IwazoLab navy field with crimson sweep, after the Research Saturday Kenya poster */}
-      <div className="bg-brand-navy text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+      <div className="bg-brand-navy text-white p-8 sm:p-10 lg:p-8 flex flex-col justify-between relative overflow-hidden">
         {/* Curved crimson + white bands echoing the poster */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true">
           <path d="M400 0 C 300 170, 330 420, 470 640 L 470 0 Z" fill="#8A0F23" opacity="0.9" />
@@ -87,11 +88,11 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
 
         {/* Top: Brand Header */}
         <div className="relative z-10">
-          <BrandWordmark onDark size="md" className="mb-8" />
+          <BrandWordmark onDark size="md" className="mb-8 lg:mb-6" />
 
           {/* Display Headline */}
-          <div className="mb-7">
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-[0.95] uppercase">
+          <div className="mb-7 lg:mb-5">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.1rem] font-black tracking-tight text-white leading-[0.95] uppercase">
               Research
               <br />
               Saturday
@@ -102,19 +103,20 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           </div>
 
           {/* Platform capabilities */}
-          <div className="space-y-3.5">
+          <div className="space-y-3.5 lg:space-y-3">
             {[
               { icon: Bot, title: 'Automated Researcher Ingestion', body: 'Daily agent harvesting LinkedIn profiles, subject matter experts, and research credentials.' },
               { icon: Database, title: 'Open Microdata & MCP Harvester', body: 'Weekly crawler ingesting verified open-source datasets, surveys, and African repositories.' },
               { icon: Coins, title: 'Verified Open Funding Scout', body: 'Autonomous daily grant discovery preserving source authenticity and application deadlines.' }
             ].map(({ icon: Icon, title, body }) => (
-              <div key={title} className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-full bg-white text-brand-navy flex items-center justify-center shrink-0 mt-0.5 ring-2 ring-crimson-400/70">
+              <div key={title} className="flex items-start lg:items-center gap-3" title={body}>
+                <div className="w-7 h-7 rounded-full bg-white text-brand-navy flex items-center justify-center shrink-0 mt-0.5 lg:mt-0 ring-2 ring-crimson-400/70">
                   <Icon className="w-3.5 h-3.5" />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-white tracking-wide">{title}</h4>
-                  <p className="text-[11px] text-white/70 leading-relaxed mt-0.5">{body}</p>
+                  {/* Descriptions collapse to a hover title on large screens so the card fits inside the orbit */}
+                  <p className="text-[11px] text-white/70 leading-relaxed mt-0.5 lg:hidden">{body}</p>
                 </div>
               </div>
             ))}
@@ -122,7 +124,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
         </div>
 
         {/* Footnote */}
-        <div className="relative z-10 pt-6 mt-7 border-t border-white/15">
+        <div className="relative z-10 pt-6 mt-7 lg:pt-4 lg:mt-5 border-t border-white/15">
           <p className="text-sm font-bold leading-snug text-white">
             Research dies in isolation.
             <br />
@@ -135,7 +137,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
       </div>
 
       {/* RIGHT PANEL: Clean White Authentication Form matching reference */}
-      <div className="bg-white p-8 sm:p-10 flex flex-col justify-center">
+      <div className="bg-white p-8 sm:p-10 lg:p-8 flex flex-col justify-center">
         <div className="max-w-sm mx-auto w-full">
           
           <BrandWordmark size="sm" className="mb-6 md:hidden" />
@@ -158,7 +160,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-3.5">
             {/* Email Field */}
             <div>
               <label className="block text-[11px] font-semibold text-slate-700 mb-1">
@@ -249,7 +251,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           </form>
 
           {/* Divider */}
-          <div className="relative my-5">
+          <div className="relative my-5 lg:my-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-slate-200" />
             </div>
@@ -306,7 +308,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           </div>
 
           {/* Account Request & Quick Guest Explore */}
-          <div className="mt-6 text-center space-y-2">
+          <div className="mt-6 lg:mt-5 text-center space-y-2">
             <p className="text-[11px] text-slate-500">
               Don't have an account?{' '}
               <button
@@ -318,7 +320,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
               </button>
             </p>
 
-            <div className="pt-2">
+            <div className="pt-2 lg:pt-1">
               <button
                 type="button"
                 onClick={onExploreAsGuest}
@@ -354,8 +356,8 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
         <path d="M1440 300 V 360 C 1290 640, 1040 820, 760 900 H 700 C 1000 810, 1270 620, 1440 300 Z" fill="#8A0F23" />
       </svg>
       {/* Ecosystem actors orbiting the login card, which stands in as the "Research to Impact" hub */}
-      <EcosystemOrbit />
-      <div className="relative z-10 w-full max-w-4xl">
+      <EcosystemOrbit hubRef={hubRef} />
+      <div ref={hubRef} className="relative z-10 w-full max-w-4xl lg:max-w-[50rem] transition-transform duration-500 ease-out">
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 hidden lg:flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy text-white shadow-lg ring-4 ring-white">
           <Users className="w-3.5 h-3.5" />
           <span className="text-[11px] font-black tracking-[0.18em] uppercase">
