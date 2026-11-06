@@ -188,7 +188,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       onChange={(e) => setOrcid(e.target.value)}
                       className="flex-1 px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono focus:outline-none focus:ring-2 focus:ring-slate-900"
                     />
-                    <span className="text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-1.5 rounded-md border border-emerald-200 flex items-center gap-1">
+                    <span className="text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-1.5 rounded-md border border-brand-crimson flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       Verified
                     </span>
@@ -337,8 +337,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         <div className="text-[10px] text-slate-500">Cadence: Daily · Automated profile extraction & semantic ranking</div>
                       </div>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-brand-crimson">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson animate-pulse" />
                       Operational
                     </span>
                   </div>
@@ -354,8 +354,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         <div className="text-[10px] text-slate-500">Cadence: Weekly · Ethical Open Access & CC-BY Ingestion</div>
                       </div>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-brand-crimson">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson animate-pulse" />
                       Operational
                     </span>
                   </div>
@@ -371,8 +371,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         <div className="text-[10px] text-slate-500">Cadence: Daily · Web link crawler with cryptographic origin check</div>
                       </div>
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-brand-crimson">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson animate-pulse" />
                       Operational
                     </span>
                   </div>

@@ -160,7 +160,7 @@ export const ConnectView: React.FC = () => {
       {/* Toast Notification Banner */}
       {notification && (
         <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white text-xs px-4 py-2.5 rounded-lg shadow-xl flex items-center gap-2 border border-slate-700 animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <CheckCircle2 className="w-5 h-5 p-0.5 rounded-full bg-white text-brand-crimson shrink-0" />
           <span>{notification}</span>
         </div>
       )}

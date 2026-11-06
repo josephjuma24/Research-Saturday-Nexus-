@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { BrandWordmark } from './BrandWordmark.tsx';
+import { EcosystemOrbit } from './EcosystemOrbit.tsx';
 import { 
   Mail, 
   Lock, 
   Eye, 
   EyeOff, 
-  ShieldCheck, 
+
   Bot, 
   Database, 
   Coins, 
   ArrowRight, 
+  Users,
   Sparkles,
   CheckCircle2,
   X
@@ -33,6 +36,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
   const [keepSignedIn, setKeepSignedIn] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [ssoMessage, setSsoMessage] = useState<string | null>(null);
+  const hubRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,7 +58,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
   };
 
   const content = (
-    <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl shadow-slate-900/15 overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-slate-200/80 relative">
+    <div className="w-full max-w-4xl lg:max-w-[50rem] bg-white rounded-3xl shadow-2xl shadow-brand-navy/20 overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-slate-200/80 relative z-10">
       
       {/* Optional Close Button if onClose is provided */}
       {onClose && (
@@ -64,100 +68,84 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           aria-label="Return to Nexus Platform"
           title="Return to Nexus Platform"
         >
-          <span className="hidden sm:inline">Return to Workspace</span>
+          <span className="hidden sm:inline lg:hidden">Return to Workspace</span>
           <X className="w-3.5 h-3.5" />
         </button>
       )}
 
-      {/* LEFT PANEL: Dark Teal/Spruce Gradient with Value Highlights matching reference */}
-      <div className="bg-[#0b2422] text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
-        {/* Ambient subtle glow overlay */}
-        <div className="absolute -top-24 -left-24 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* LEFT PANEL: IwazoLab navy field with crimson sweep, after the Research Saturday Kenya poster */}
+      <div className="bg-brand-navy text-white p-8 sm:p-10 lg:p-8 flex flex-col justify-between relative overflow-hidden">
+        {/* Curved crimson + white bands echoing the poster */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M400 0 C 300 170, 330 420, 470 640 L 470 0 Z" fill="#8A0F23" opacity="0.9" />
+          <path d="M400 0 C 318 170, 348 420, 488 640 L 488 0 Z" fill="#0B195E" />
+        </svg>
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.08]"
+          style={{ backgroundImage: 'radial-gradient(#FFFFFF 1px, transparent 1px)', backgroundSize: '14px 14px' }}
+          aria-hidden="true"
+        />
 
-        {/* Top: Brand Header */}
-        <div className="relative z-10">
-          <div className="flex items-center gap-2.5 mb-8">
-            <div className="w-8 h-8 rounded-lg bg-emerald-400/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-            <span className="font-bold text-sm tracking-wide text-white">
-              Nexus Research AI
-            </span>
-          </div>
-
-          {/* Bold Display Headline */}
-          <div className="space-y-1 mb-8">
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
-              Autonomous
+        {/* Headline and capabilities, centred in the space above the footnote */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center">
+          {/* Display Headline */}
+          <div className="mb-7 lg:mb-5">
+            {/* Event hashtag as a single-line display headline */}
+            <h1
+              className="inline-block whitespace-nowrap rounded-lg bg-white px-3 py-1.5 font-black tracking-tight leading-none text-brand-navy shadow-sm text-[clamp(1.2rem,5.8vw,1.6rem)] md:text-[1.45rem] lg:text-[1.75rem]"
+              aria-label="#ResearchSaturdayKE"
+            >
+              <span className="text-brand-crimson">#</span>ResearchSaturday<span className="text-brand-crimson">KE</span>
             </h1>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-emerald-400 leading-tight">
-              Research Intelligence
-            </h2>
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
-              Platform
-            </h3>
+            <p className="mt-2.5 text-sm italic text-white/85">Research. Reimagined.</p>
+            <div className="brand-rule brand-rule-on-dark w-28 mt-3" aria-hidden="true"><span /><span /><span /></div>
           </div>
 
-          {/* 3 Key Feature Bullets with Teal Circular Badges */}
-          <div className="space-y-4">
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
-                <Bot className="w-3.5 h-3.5" />
+          {/* Platform capabilities */}
+          <div className="space-y-3.5 lg:space-y-3">
+            {[
+              { icon: Bot, title: 'Automated Researcher Ingestion', body: 'Daily agent harvesting LinkedIn profiles, subject matter experts, and research credentials.' },
+              { icon: Database, title: 'Open Microdata & MCP Harvester', body: 'Weekly crawler ingesting verified open-source datasets, surveys, and African repositories.' },
+              { icon: Coins, title: 'Verified Open Funding Scout', body: 'Autonomous daily grant discovery preserving source authenticity and application deadlines.' }
+            ].map(({ icon: Icon, title, body }) => (
+              <div key={title} className="flex items-start lg:items-center gap-3" title={body}>
+                <div className="w-7 h-7 rounded-full bg-white text-brand-navy flex items-center justify-center shrink-0 mt-0.5 lg:mt-0 ring-2 ring-brand-crimson">
+                  <Icon className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-white tracking-wide">{title}</h4>
+                  {/* Descriptions collapse to a hover title on large screens so the card fits inside the orbit */}
+                  <p className="text-[11px] text-white/70 leading-relaxed mt-0.5 lg:hidden">{body}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-xs font-semibold text-white tracking-wide">
-                  Automated Researcher Ingestion
-                </h4>
-                <p className="text-[11px] text-slate-300/80 leading-relaxed mt-0.5">
-                  Daily agent harvesting LinkedIn profiles, subject matter experts, and research credentials.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
-                <Database className="w-3.5 h-3.5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-semibold text-white tracking-wide">
-                  Open Microdata & MCP Harvester
-                </h4>
-                <p className="text-[11px] text-slate-300/80 leading-relaxed mt-0.5">
-                  Weekly crawler ingesting verified open-source datasets, surveys, and African repositories.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0 mt-0.5 border border-emerald-500/30">
-                <Coins className="w-3.5 h-3.5" />
-              </div>
-              <div>
-                <h4 className="text-xs font-semibold text-white tracking-wide">
-                  Verified Open Funding Scout
-                </h4>
-                <p className="text-[11px] text-slate-300/80 leading-relaxed mt-0.5">
-                  Autonomous daily grant discovery preserving source authenticity and application deadlines.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
         {/* Footnote */}
-        <div className="relative z-10 pt-8 mt-6 border-t border-slate-800/80 text-[10px] text-slate-400">
-          <span>© 2026 Research Saturday Nexus. All rights reserved. System Infrastructure 104.3</span>
+        <div className="relative z-10 pt-6 mt-7 lg:pt-4 lg:mt-5 border-t border-white/15">
+          <p className="text-sm font-bold leading-snug text-white">
+            Research dies in isolation.
+            <br />
+            Impact happens in <span className="rounded bg-white px-1.5 text-brand-crimson">ecosystems.</span>
+          </p>
+          <p className="mt-3 text-[10px] text-white/50">
+            © 2026 IwazoLab Solutions Limited · Research Saturday Nexus
+          </p>
         </div>
       </div>
 
       {/* RIGHT PANEL: Clean White Authentication Form matching reference */}
-      <div className="bg-white p-8 sm:p-10 flex flex-col justify-center">
+      <div className="bg-white p-8 sm:p-10 lg:p-8 flex flex-col justify-center">
         <div className="max-w-sm mx-auto w-full">
           
+          <BrandWordmark size="sm" className="mb-6 md:hidden" />
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
-              Welcome Back
+            <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-crimson mb-1">
+              Nexus Intelligence Platform
+            </div>
+            <h2 className="text-2xl font-black text-brand-navy tracking-tight">
+              Welcome back<span className="text-brand-crimson">.</span>
             </h2>
             <p className="text-xs text-slate-500 mt-1">
               Sign in to your account to continue
@@ -165,13 +153,13 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           </div>
 
           {ssoMessage && (
-            <div className="mb-4 p-2.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg text-xs flex items-center gap-2 animate-in fade-in">
+            <div className="mb-4 p-2.5 bg-emerald-50 border border-brand-crimson text-emerald-800 rounded-lg text-xs flex items-center gap-2 animate-in fade-in">
               <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               <span>{ssoMessage}</span>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-3.5">
             {/* Email Field */}
             <div>
               <label className="block text-[11px] font-semibold text-slate-700 mb-1">
@@ -187,7 +175,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@institution.ac.ke"
                   required
-                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-600/30 focus:border-teal-700 transition-colors"
+                  className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-navy/20 focus:border-brand-navy focus:bg-white transition-colors"
                 />
               </div>
             </div>
@@ -201,7 +189,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                 <button
                   type="button"
                   onClick={() => alert('Password recovery link dispatched to your verified institutional inbox.')}
-                  className="text-[11px] font-medium text-teal-700 hover:text-teal-800 hover:underline"
+                  className="text-[11px] font-medium text-brand-crimson hover:text-crimson-800 hover:underline"
                 >
                   Forgot Password?
                 </button>
@@ -216,7 +204,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
                   required
-                  className="w-full pl-9 pr-10 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-600/30 focus:border-teal-700 transition-colors"
+                  className="w-full pl-9 pr-10 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-navy/20 focus:border-brand-navy focus:bg-white transition-colors"
                 />
                 <button
                   type="button"
@@ -236,7 +224,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
                   type="checkbox"
                   checked={keepSignedIn}
                   onChange={(e) => setKeepSignedIn(e.target.checked)}
-                  className="w-3.5 h-3.5 rounded text-teal-700 border-slate-300 focus:ring-teal-600 cursor-pointer"
+                  className="w-3.5 h-3.5 rounded accent-brand-navy border-slate-300 focus:ring-brand-navy cursor-pointer"
                 />
                 <span className="text-xs text-slate-600 select-none">
                   Keep me signed in
@@ -248,7 +236,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-2.5 px-4 bg-[#0e3f3b] hover:bg-[#092d2a] text-white font-semibold text-xs rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full py-2.5 px-4 bg-brand-navy hover:bg-brand-crimson text-white font-bold text-xs rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2 disabled:opacity-60"
             >
               {isLoading ? (
                 <span>Signing in...</span>
@@ -262,7 +250,7 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           </form>
 
           {/* Divider */}
-          <div className="relative my-5">
+          <div className="relative my-5 lg:my-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-slate-200" />
             </div>
@@ -319,25 +307,25 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
           </div>
 
           {/* Account Request & Quick Guest Explore */}
-          <div className="mt-6 text-center space-y-2">
+          <div className="mt-6 lg:mt-5 text-center space-y-2">
             <p className="text-[11px] text-slate-500">
               Don't have an account?{' '}
               <button
                 type="button"
                 onClick={() => alert('Institutional account request submitted. An invitation token will be sent to your Dean or Research Directorate.')}
-                className="font-semibold text-teal-700 hover:text-teal-800 hover:underline"
+                className="font-semibold text-brand-crimson hover:text-crimson-800 hover:underline"
               >
                 Request an Account
               </button>
             </p>
 
-            <div className="pt-2">
+            <div className="pt-2 lg:pt-1">
               <button
                 type="button"
                 onClick={onExploreAsGuest}
                 className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/70 px-3 py-1.5 rounded-md transition-colors"
               >
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-brand-crimson" />
                 <span>Explore Platform as Guest Researcher</span>
               </button>
             </div>
@@ -351,15 +339,35 @@ export const LandingLoginView: React.FC<LandingLoginViewProps> = ({
 
   if (isModal) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-navy/70 backdrop-blur-xs animate-in fade-in duration-200">
         {content}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-teal-50/70 via-slate-50 to-emerald-50/50 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
-      {content}
+    <div className="relative min-h-screen w-full overflow-hidden bg-white flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+      {/* Poster backdrop: navy field top-left and bottom-right, separated by crimson sweeps */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 H560 C 330 160, 150 420, 0 640 Z" fill="#0B195E" />
+        <path d="M560 0 H600 C 360 170, 180 430, 0 690 V 640 C 150 420, 330 160, 560 0 Z" fill="#8A0F23" />
+        <path d="M1440 900 H760 C 1040 820, 1290 640, 1440 360 Z" fill="#0B195E" />
+        <path d="M1440 300 V 360 C 1290 640, 1040 820, 760 900 H 700 C 1000 810, 1270 620, 1440 300 Z" fill="#8A0F23" />
+      </svg>
+      {/* Ecosystem actors orbiting the login card, which stands in as the "Research to Impact" hub */}
+      <EcosystemOrbit hubRef={hubRef} />
+      <div ref={hubRef} className="relative z-10 w-full max-w-4xl lg:max-w-[50rem] transition-transform duration-500 ease-out">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 hidden lg:flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-navy text-white shadow-lg ring-4 ring-white">
+          <Users className="w-3.5 h-3.5" />
+          <span className="text-[11px] font-black tracking-[0.18em] uppercase">
+            Research <span className="font-medium normal-case tracking-normal text-white/80">to</span> Impact
+          </span>
+        </div>
+        {content}
+      </div>
+      <p className="lg:hidden relative z-10 mt-6 px-4 py-1.5 rounded-full bg-white/95 shadow-sm text-[11px] font-bold tracking-[0.25em] uppercase text-brand-navy">
+        Research • Innovate • Empower
+      </p>
     </div>
   );
 };

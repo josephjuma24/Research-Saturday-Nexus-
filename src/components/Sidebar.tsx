@@ -17,6 +17,7 @@ import {
   Coins
 } from 'lucide-react';
 import type { NavTab, UserRole } from './TopBar.tsx';
+import { BrandMark } from './BrandWordmark.tsx';
 
 interface SidebarProps {
   activeTab: NavTab;
@@ -112,21 +113,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
         aria-label="Nexus Navigation Sidebar"
       >
         {/* Top Section: Brand & Quick Action */}
-        <div className="p-4 border-b border-slate-100 space-y-3">
+        <div className="p-4 border-b border-slate-100 space-y-3 relative">
+          <div className="brand-rule absolute top-0 left-0 right-0" aria-hidden="true">
+            <span className="rounded-none!" />
+            <span className="rounded-none!" />
+            <span className="rounded-none!" />
+          </div>
           <div className="flex items-center justify-between">
             <button
               onClick={() => handleItemClick('discover')}
               className="flex items-center gap-2.5 text-left focus:outline-none"
             >
-              <div className="w-9 h-9 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-sm tracking-tight shadow-sm shrink-0">
-                RS
-              </div>
+              <BrandMark />
               <div>
-                <span className="text-sm font-bold text-slate-900 tracking-tight block whitespace-nowrap">
+                <span className="text-sm font-black text-brand-navy tracking-tight block whitespace-nowrap uppercase">
                   Research Saturday
                 </span>
-                <span className="text-[11px] text-slate-500 font-medium block leading-tight">
-                  Nexus Intelligence
+                <span className="text-[10px] font-bold block leading-tight tracking-[0.3em] text-brand-crimson">
+                  KENYA <span className="tracking-normal font-medium text-slate-500">· Nexus</span>
                 </span>
               </div>
             </button>
@@ -170,9 +174,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleItemClick(item.id)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-colors text-left group ${
+                  className={`relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-semibold transition-colors text-left group ${
                     isActive
-                      ? 'bg-slate-900 text-white shadow-xs'
+                      ? 'bg-slate-900 text-white shadow-xs before:absolute before:-left-3 before:top-1.5 before:bottom-1.5 before:w-1 before:rounded-r-full before:bg-brand-crimson'
                       : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                   }`}
                   aria-current={isActive ? 'page' : undefined}
@@ -199,7 +203,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
               <span>Autonomous Agents</span>
               <span className="flex items-center gap-1 text-[9px] text-emerald-600 font-mono font-medium lowercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson animate-pulse" />
                 Active
               </span>
             </div>
@@ -215,7 +219,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               aria-current={activeTab === 'agent' ? 'page' : undefined}
             >
               <div className={`p-1.5 rounded-md ${
-                activeTab === 'agent' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 group-hover:bg-slate-200'
+                activeTab === 'agent' ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-600 group-hover:bg-slate-200'
               }`}>
                 <Bot className="w-4 h-4 shrink-0" />
               </div>
@@ -244,7 +248,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               aria-current={activeTab === 'dataset-agent' ? 'page' : undefined}
             >
               <div className={`p-1.5 rounded-md ${
-                activeTab === 'dataset-agent' ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-emerald-700 group-hover:bg-slate-200'
+                activeTab === 'dataset-agent' ? 'bg-crimson-600 text-white' : 'bg-slate-100 text-emerald-700 group-hover:bg-slate-200'
               }`}>
                 <Database className="w-4 h-4 shrink-0" />
               </div>
@@ -252,7 +256,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <div className="flex-1 min-w-0">
                 <div className="truncate leading-tight flex items-center justify-between gap-1">
                   <span>Open Data & MCP Agent</span>
-                  <span className="text-[9px] font-mono px-1 rounded bg-emerald-100/70 text-emerald-800 font-medium">Weekly</span>
+                  <span className="text-[9px] font-mono px-1 rounded bg-brand-crimson-tint text-brand-crimson font-semibold">Weekly</span>
                 </div>
                 <div className={`text-[10px] truncate font-normal mt-0.5 ${
                   activeTab === 'dataset-agent' ? 'text-slate-300' : 'text-slate-500'
@@ -327,7 +331,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           
           {/* User Profile Mini Banner */}
           <div className="flex items-center gap-2.5 px-1">
-            <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs font-mono shrink-0">
+            <div className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs font-mono shrink-0 ring-2 ring-brand-crimson">
               JJ
             </div>
             <div className="min-w-0 flex-1">
@@ -343,7 +347,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span className="font-mono font-bold text-slate-800">85%</span>
             </div>
             <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
-              <div className="h-full bg-slate-900 rounded-full" style={{ width: '85%' }} />
+              <div className="h-full bg-gradient-to-r from-brand-navy to-brand-crimson rounded-full" style={{ width: '85%' }} />
             </div>
           </div>
 

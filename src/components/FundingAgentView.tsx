@@ -138,7 +138,7 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
                 <Coins className="w-3.5 h-3.5 text-amber-600" />
                 <span>Autonomous Agent 3</span>
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-emerald-50 text-emerald-800 border border-brand-crimson">
                 <Clock className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Runs Daily (04:00 UTC)</span>
               </span>
@@ -148,11 +148,11 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight text-balance">
               Open Funding Calls Scout & Origin Verifier
             </h1>
 
-            <p className="text-sm text-slate-600 max-w-3xl leading-relaxed">
+            <p className="text-sm text-slate-600 max-w-3xl leading-relaxed text-pretty">
               Autonomous agent running once daily to scout, crawl, and scrape open grant opportunities, RFPs, and donor calls across the internet. Every ingested opportunity retains verifiable cryptographic origin proof tied to the original donor platform.
             </p>
           </div>
@@ -283,7 +283,7 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
           {/* Step 3 */}
           <div className={`p-4 rounded-xl border transition-all ${
             currentStage === 'Grant Criteria Parsing' 
-              ? 'bg-purple-50/80 border-purple-300 ring-2 ring-purple-400/20' 
+              ? 'bg-purple-50/80 border-brand-crimson ring-2 ring-crimson-100' 
               : 'bg-slate-50 border-slate-200'
           }`}>
             <div className="flex items-center justify-between">
@@ -299,7 +299,7 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
           {/* Step 4 */}
           <div className={`p-4 rounded-xl border transition-all ${
             currentStage === 'Cryptographic Proofing' 
-              ? 'bg-emerald-50/80 border-emerald-300 ring-2 ring-emerald-400/20' 
+              ? 'bg-emerald-50/80 border-brand-crimson ring-2 ring-crimson-100' 
               : 'bg-slate-50 border-slate-200'
           }`}>
             <div className="flex items-center justify-between">
@@ -326,7 +326,7 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
               Verified multilateral donors, philanthropic foundations, and national research councils tracked on every 24-hour cycle.
             </p>
           </div>
-          <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-medium">
+          <span className="text-xs text-emerald-700 bg-emerald-50 border border-brand-crimson px-2 py-0.5 rounded font-medium">
             All 7 Portals Healthy
           </span>
         </div>
@@ -423,7 +423,7 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
                 {/* Left: Call Details */}
                 <div className="space-y-2 flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded font-mono">
+                    <span className="text-xs font-extrabold text-emerald-800 bg-emerald-50 border border-brand-crimson px-2.5 py-0.5 rounded font-mono">
                       {call.amount}
                     </span>
 
@@ -520,8 +520,8 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
               Funding Scout Engine Live Activity Log
             </span>
           </div>
-          <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-[10px] font-mono font-semibold text-brand-crimson bg-white px-2 py-0.5 rounded-full flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson animate-pulse" />
             Daily Cron Listening (04:00 UTC)
           </span>
         </div>
@@ -533,8 +533,8 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
               <span className={`px-1.5 py-0.2 rounded text-[10px] font-bold shrink-0 ${
                 log.stage === 'Link Discovery' ? 'bg-amber-950 text-amber-300 border border-amber-800' :
                 log.stage === 'Origin Verification' ? 'bg-blue-950 text-blue-300 border border-blue-800' :
-                log.stage === 'Grant Criteria Parsing' ? 'bg-purple-950 text-purple-300 border border-purple-800' :
-                log.stage === 'Cryptographic Proofing' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
+                log.stage === 'Grant Criteria Parsing' ? 'bg-brand-crimson-tint text-brand-crimson border border-brand-crimson-tint' :
+                log.stage === 'Cryptographic Proofing' ? 'bg-white text-brand-crimson border border-white' :
                 'bg-slate-800 text-slate-300'
               }`}>
                 {log.stage}
@@ -559,7 +559,7 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
             
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-brand-crimson flex items-center justify-center text-emerald-600">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
@@ -625,7 +625,7 @@ export const FundingAgentView: React.FC<FundingAgentViewProps> = ({
                     <span>{copiedHash ? 'Copied' : 'Copy Hash'}</span>
                   </button>
                 </div>
-                <div className="p-2.5 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-lg break-all select-all">
+                <div className="p-2.5 bg-brand-crimson-tint text-brand-crimson border border-brand-crimson font-mono text-[11px] rounded-lg break-all select-all">
                   {selectedCert.cryptographicHash}
                 </div>
               </div>

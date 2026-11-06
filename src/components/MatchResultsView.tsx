@@ -151,7 +151,7 @@ export const MatchResultsView: React.FC<MatchResultsViewProps> = ({
                               {r.name}
                             </h3>
                             {r.verified && (
-                              <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.5 rounded">
+                              <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-brand-crimson px-1.5 py-0.5 rounded">
                                 Verified Researcher
                               </span>
                             )}
@@ -266,7 +266,7 @@ export const MatchResultsView: React.FC<MatchResultsViewProps> = ({
                             {r.name}
                           </h3>
                           {r.verified && (
-                            <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 rounded">
+                            <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-brand-crimson px-2 py-0.5 rounded">
                               Verified Researcher
                             </span>
                           )}
@@ -380,7 +380,7 @@ export const MatchResultsView: React.FC<MatchResultsViewProps> = ({
                   key={ds.id}
                   className="w-[310px] sm:w-[370px] shrink-0 snap-start bg-white border border-slate-200 rounded-xl p-4.5 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all relative overflow-hidden group"
                 >
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-crimson to-brand-navy" />
                   <div className="space-y-2.5 pt-1">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="text-sm font-bold text-slate-900 leading-snug group-hover:text-emerald-950 transition-colors">
@@ -391,7 +391,7 @@ export const MatchResultsView: React.FC<MatchResultsViewProps> = ({
                           {ds.license}
                         </span>
                         {ds.sourceType && (
-                          <span className="text-[9px] font-mono font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.2 rounded uppercase">
+                          <span className="text-[9px] font-mono font-bold text-emerald-800 bg-emerald-50 border border-brand-crimson px-1.5 py-0.2 rounded uppercase">
                             {ds.sourceType === 'mcp' ? 'MCP Harvested' : `${ds.sourceType} Harvester`}
                           </span>
                         )}
@@ -421,7 +421,7 @@ export const MatchResultsView: React.FC<MatchResultsViewProps> = ({
 
                   <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
                     <span className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson" />
                       Ready for Project Import
                     </span>
                     <button className="text-xs font-semibold text-slate-900 hover:text-blue-600 flex items-center gap-1 transition-colors">
@@ -502,7 +502,7 @@ export const MatchResultsView: React.FC<MatchResultsViewProps> = ({
                       <h3 className="text-sm font-bold text-slate-900 leading-snug group-hover:text-amber-950 transition-colors">
                         {fund.title}
                       </h3>
-                      <span className="text-xs font-bold font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded whitespace-nowrap shrink-0">
+                      <span className="text-xs font-bold font-mono text-emerald-700 bg-emerald-50 border border-brand-crimson px-2 py-0.5 rounded whitespace-nowrap shrink-0">
                         {fund.amount}
                       </span>
                     </div>
@@ -560,7 +560,7 @@ export const MatchResultsView: React.FC<MatchResultsViewProps> = ({
                       <h3 className="text-sm font-bold text-slate-900 leading-snug">
                         {fund.title}
                       </h3>
-                      <span className="text-xs font-bold font-mono text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded">
+                      <span className="text-xs font-bold font-mono text-emerald-700 bg-emerald-50 border border-brand-crimson px-2 py-0.5 rounded">
                         {fund.amount}
                       </span>
                       {fund.originPlatformDomain && (
